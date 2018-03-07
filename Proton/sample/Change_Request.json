@@ -1,0 +1,208 @@
+{
+	"epn": {
+		"events": [{
+			"name": "Request",
+			"createdDate": "Tue Jun 28 2016",
+			"attributes": [{
+				"name": "title",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "identifier",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "productId",
+				"type": "Integer",
+				"dimension": "0"
+			}, {
+				"name": "requirement",
+				"type": "Integer",
+				"dimension": "0"
+			}, {
+				"name": "modifiedBy",
+				"type": "String",
+				"dimension": 0
+			}, {
+				"name": "modifiedTime",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "token",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "server",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "status",
+				"type": "String",
+				"dimension": "0"
+			}]
+		}, {
+			"name": "OpenTicket",
+			"createdDate": "Tue Jul 19 2016",
+			"attributes": [{
+				"name": "title",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "identifier",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "productId",
+				"type": "Integer",
+				"dimension": 0
+			}, {
+				"name": "requirement",
+				"type": "Integer",
+				"dimension": "0"
+			}, {
+				"name": "modifiedBy",
+				"type": "String",
+				"dimension": 0
+			}, {
+				"name": "modifiedTime",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "description",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "token",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "server",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "status",
+				"type": "String",
+				"dimension": "0"
+			}]
+		}, {
+			"name": "AlertHandler",
+			"createdDate": "Mon Aug 22 2016",
+			"attributes": [{
+				"name": "title",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "identifier",
+				"type": "String",
+				"dimension": "0"
+			}, {
+				"name": "description",
+				"type": "String",
+				"dimension": "0"
+			}]
+		}],
+		"epas": [{
+			"name": "OpenChangeRequest",
+			"createdDate": "Mon Jul 25 2016",
+			"epaType": "Basic",
+			"context": "always",
+			"inputEvents": [{
+				"name": "Request",
+				"alias": "R",
+				"filterExpression": "(!IsNull(R.title)) && (!IsNull(R.identifier)) && (!EqualsIgnoreCase(R.title,''))",
+				"consumptionPolicy": "Consume",
+				"instanceSelectionPolicy": "First"
+			}],
+			"computedVariables": [{
+				"name": "TotalRequests",
+				"aggregationType": "Count",
+				"R": "1"
+			}],
+			"evaluationPolicy": "Immediate",
+			"cardinalityPolicy": "Single",
+			"internalSegmentation": [],
+			"derivedEvents": [{
+				"name": "OpenTicket",
+				"reportParticipants": false,
+				"expressions": {
+					"title": "R.title",
+					"identifier": "R.identifier",
+					"productId": "R.productId",
+					"requirement": "R.requirement",
+					"modifiedBy": "R.modifiedBy",
+					"modifiedTime": "R.modifiedTime",
+					"description": "\"Requirement \" ++ R.requirement ++ \" has been modified and the ticket \" ++ R.identifier ++ \" must be reopenend on \" ++ R.server ++ \". The Change Request has been created by \" ++ R.modifiedBy ++ \" at \" ++ R.modifiedTime",
+					"token": "R.token",
+					"server": "R.server",
+					"status": "R.status"
+				}
+			}]
+		}, {
+			"name": "AlertEPA",
+			"createdDate": "Mon Aug 22 2016",
+			"epaType": "Basic",
+			"context": "always",
+			"inputEvents": [{
+				"name": "Request",
+				"alias": "R",
+				"filterExpression": "IsNull(R.identifier)",
+				"consumptionPolicy": "Consume",
+				"instanceSelectionPolicy": "First"
+			}],
+			"computedVariables": [],
+			"evaluationPolicy": "Immediate",
+			"cardinalityPolicy": "Single",
+			"internalSegmentation": [],
+			"derivedEvents": [{
+				"name": "AlertHandler",
+				"reportParticipants": false,
+				"expressions": {
+					"title": "R.title",
+					"identifier": "R.identifier",
+					"description": "\"Error: It is not a Change Request. Identifier is not specified and no requirement has been modified.\""
+				}
+			}]
+		}],
+		"contexts": {
+			"temporal": [{
+				"name": "always",
+				"createdDate": "Tue Jun 28 2016",
+				"type": "TemporalInterval",
+				"atStartup": true,
+				"neverEnding": true,
+				"initiators": [],
+				"terminators": []
+			}],
+			"segmentation": [],
+			"composite": []
+		},
+		"consumers": [{
+			"name": "Output",
+			"createdDate": "Tue Jul 19 2016",
+			"type": "Custom",
+			"properties": [{
+				"name": "formatter",
+				"value": "json"
+			}],
+			"events": [{
+				"name": "OpenTicket"
+			}, {
+				"name": "AlertHandler"
+			}]
+		}],
+		"producers": [{
+			"name": "FileProducer",
+			"createdDate": "Tue Jul 19 2016",
+			"type": "Custom",
+			"properties": [{
+				"name": "delay",
+				"value": "1000"
+			}, {
+				"name": "pollingDelay",
+				"value": "1000"
+			}],
+			"events": []
+		}],
+		"name": "Change_Request"
+	}
+}
