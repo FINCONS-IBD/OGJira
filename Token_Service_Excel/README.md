@@ -1,5 +1,5 @@
 # Token_Service_Excel
-=============================
+==================
 Token_Service_Excel has two main functionalities: </br>
 	1. Provide the token to the Excel file, used to perform any operation with macros.</br>
 	2. Provide user informations starting from the token.</br></br>
