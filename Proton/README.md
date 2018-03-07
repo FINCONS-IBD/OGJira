@@ -17,5 +17,5 @@ The only configuration file that has to be modified is the "config.properies" fi
 * Protocol, address and port of Jira.
 * Protocol, address and port of Token_Service_Excel.
 
-About "logging.properties", the creation of the folders C:\ProtonEngine\logs is suggested.
+About "logging.properties", the creation of the folders C:\ProtonEngine\logs is suggested.  
 After a Maven Build of the project, you should have a .zip file called IBMProton. Include the "config" folder inside the unzipped folder, replace "sample" folder and the batch launcher with the one in the repository.
