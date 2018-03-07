@@ -1,8 +1,0 @@
-com\fincons\token\restlet\GenerateCredentialResource.class
-com\fincons\token\utils\DateUtil.class
-com\fincons\token\restlet\GenerateTokenResource.class
-com\fincons\token\utils\PropertiesHelper.class
-com\fincons\token\utils\PropertiesHelperOLD.class
-com\fincons\token\restlet\TokenServiceRestletApplication.class
-com\fincons\token\utils\RSACryptService.class
-com\fincons\token\utils\AESencrp.class
