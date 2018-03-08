@@ -1,0 +1,1 @@
+java -Dcom.fincons.configFile="%CD%/CryptographyServer-config.properties" -jar CryptographyServer.jar
