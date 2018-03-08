@@ -1,6 +1,7 @@
 # Cryptography Server  
 
 The Cryptography Server refers to the java part of an Excel Add-in called "xlloop".  
+It is available at this URL: http://xlloop.sourceforge.net/ .  
 
 ## Content
 
