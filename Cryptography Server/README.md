@@ -12,6 +12,6 @@ The following classes have to be added into the "org.boris.xlloop.util" package:
 * classes/PropertiesHelper.java: Java class that loads and manages the configuration file .  
 * classes/ServerExample.java: Java class that exposes the previous Encryption functions and creates the connection with OGJira.xlsm (replace the existing class whit this one).  
 * CryptographyServer-config.properties: configuration file.  
-* CryptographyServer.bat: batch file that starts the server.  
+* run_CryptographyServer.bat: batch file that starts the server.  
 
 For a correct working of the server, you have to import the Xlloop.xll file in OGJira.xlsm and restart it.  
