@@ -1,5 +1,7 @@
 # OGJira
 
+[![DepShield Badge](https://depshield.sonatype.org/badges/FINCONS-IBD/OGJira/depshield.svg)](https://depshield.github.io)
+
 The **OGJira System** has been specifically designed and developed to address the needs of companies that use Microsoft Excel for requirements management, but want to have it capable to interact via OSLC with other tools used in the software development process like a tracker system used to handle issues such as requests for support, bugs, defects, or change requests.
 Indeed, Microsoft Excel is often used to manage requirements due to its ability to easily structure data elements, to filter data, to provide formulas and macros. Often, Excel is used in conjunction with Microsoft SharePoint that provides Excel files’ sharing and version control, track changes, etc.
 Of course, Excel does not natively support integration with other software development related tools and is not aware of standards like OSLC.
